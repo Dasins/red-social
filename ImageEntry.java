@@ -130,7 +130,7 @@ public class ImageEntry {
      * @return Devuelve el URL de la imagen.
      */
     public String getImgURL() {
-        return imgTitle;
+        return imgURL;
     }
     
     /**
