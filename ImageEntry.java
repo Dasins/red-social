@@ -3,20 +3,20 @@ import java.time.LocalDateTime;
 import java.time.Duration;
 
 /**
- * Una entrada de texto del muro de nuestra red social.
+ * Una entrada de imagen del muro de nuestra red social.
  * 
  * Pertenece al proyecto 'stalk', una red social un poco cutre.
  * 
- * Una entrada de texto representa un contenido textual cuyo autor desea compartir en la 
- * red social.
- * Una entrada de texto tiene un autor y un contenido, la cantidad de 'me gusta' que tiene 
- * la entrada, una coleccion con los comentarios sobre la entrada y una fecha de 
- * publicacion que se establece al crear la entrada de texto.
+ * Una entrada de imagen representa un imagen y un contenido textual cuyo autor desea compartir 
+ * en la red social.
+ * Una entrada de imagen tiene un autor, un contenido y una imagen, la cantidad de 'me gusta' 
+ * que tiene la entrada, una coleccion con los comentarios sobre la entrada y una fecha de 
+ * publicacion que se establece al crear la entrada de imagen.
  * 
  * @author d4s1ns
  * @version 2018/04/16
  */
-public class TextEntry {    
+public class ImageEntry {    
     // Numero de 'me gusta' iniciales.
     private final static int INITIAL_LIKES = 0;
     
@@ -26,25 +26,33 @@ public class TextEntry {
     private ArrayList<String> comments;
     // Contenido de la entrada.
     private String content;
+    // Titulo de la imagen.
+    private String imgTitle;
+    // URL de la imagen de la entrada.
+    private String imgURL;
     // Numero de 'me gusta".
     private int likes;
     // Fecha de publicacion:
     private LocalDateTime publicationDate;
     
+    
     /**
-     * Contructor - Crea una entrada de texto indicando el autor y el contenido.
+     * Contructor - Crea una entrada de imagen indicando el autor y el contenido.
      * Las entradas se crean con un numero prestablecido de likes y sin comentarios.
      * La fecha de publicacion coincidira con en el momento en el se crea una entrada 
      * y no sera modificable.
      * @param author Autor de la entrada.
      * @param content Contenido de la entrada.
+     * @param urlImage URL de la imagen de la entrada.
      */
-    public TextEntry(String author, String content) {
+    public ImageEntry(String author, String content, String imgTitle, String imgURL) {
         this.author = author;
         comments = new ArrayList<>();
         this.content = content;
         likes = INITIAL_LIKES;
         publicationDate = LocalDateTime.now();
+        this.imgTitle = imgTitle;
+        this.imgURL = imgURL;
     }
     
     // INFORMACION DE LA ENTRADA
@@ -110,6 +118,22 @@ public class TextEntry {
     }
     
     /**
+     * Devuelve el titulo de la imagen.
+     * @return Devuelve el titulo de la imagen.
+     */
+    public String getImgTitle() {
+        return imgTitle;
+    }
+    
+    /**
+     * Devuelve  URL de la imagen.
+     * @return Devuelve el URL de la imagen.
+     */
+    public String getImgURL() {
+        return imgTitle;
+    }
+    
+    /**
      * Devuelve el numero de 'me gusta' de la entrada.
      * @return Devuelve el numero de 'me gusta' de la entrada.
      */
@@ -134,7 +158,8 @@ public class TextEntry {
     @Override
     public String toString() {
         return "Autor: " + author + "\nMe gusta: " + likes + "\nPublicado hace: " 
-               + getAntiquity() + "\n\n" + content + "\n\n" + getComments(); 
+               + getAntiquity() + "\n\n" + "Titulo Imagen:" + imgTitle + "\nURL imagen:" 
+               + imgURL + "\n\n" + content + "\n\n" + getComments(); 
     }
     
     /**
