@@ -18,8 +18,6 @@ public class Entry {
     
     // Autor de la entrada.
     private String author;
-    // Coleccion con los comentarios de la entrada.
-    private ArrayList<String> comments;
     // Numero de 'me gusta".
     private int likes;
     // Fecha de publicacion:
@@ -27,15 +25,13 @@ public class Entry {
     
     /**
      * Constructor - Construye entradas a partir de un autor.
-     * Las entradas se crean con un numero prestablecido de likes y sin comentarios.
+     * Las entradas se crean con un numero prestablecido de likes.
      * La fecha de publicacion coincidira con en el momento en el se crea una entrada 
      * y no sera modificable.
      * @param author Autor de la entrada.
-     * @param content Contenido de la entrada.
      */
     public Entry(String author) {
         this.author = author;
-        comments = new ArrayList<>();
         likes = INITIAL_LIKES;
         publicationDate = LocalDateTime.now();
     }
@@ -64,25 +60,6 @@ public class Entry {
     public String getAuthor() {
         return author;
     } 
-    
-    /**
-     * Devuelve los comentarios de la entrada o un mensaje indicando que no hay comentarios.
-     * @return Devuelve los comentarios de la entrada o un mensaje indicando que no hay 
-     *         comentarios.
-     */
-    public String getComments() {
-        String refund = "";
-        if (comments.size() > 0) {
-            refund = "Comentarios:\n";
-            for (String comment : comments) {
-                refund += comment + "\n\n"; 
-            }
-        }
-        else {
-            refund = "No hay comentarios todavia";
-        }
-        return refund;
-    }
     
     /**
      * Devuelve el numero de 'me gusta' de la entrada.
@@ -116,12 +93,6 @@ public class Entry {
         likes++;
     }
     
-    /**
-     * Anade un comentario.
-     * @param comment Contenido del comentario.
-     */
-    public void addComment(String comment) {
-        comments.add(comment);
-    }
+    
        
 }

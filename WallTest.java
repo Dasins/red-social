@@ -39,11 +39,11 @@ public class WallTest
         textEntr1 = new TextEntry("Fran", "Otra vez Gian Carlo subiendo una  insta-history");
         textEntr2 = new TextEntry("Gian Carlo", "Eso se llama envidia @Fran");
         wall1 = new Wall();
-        wall1.print();
         wall1.addEntry(imageEnt1);
         wall1.addEntry(textEntr1);
         wall1.addEntry(imageEnt2);
         wall1.addEntry(textEntr2);
+        wall1.print();
     }
 
     /**

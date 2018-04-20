@@ -13,7 +13,7 @@
  * @author d4s1ns
  * @version 2018/04/16
  */
-public class ImageEntry extends Entry{    
+public class ImageEntry extends EntryWithComments{    
     // Titulo de la imagen.
     private String imgTitle;
     // URL de la imagen de la entrada.

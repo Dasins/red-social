@@ -12,32 +12,21 @@ import java.util.ArrayList;
  */
 public class Wall {
     // Entradas de texto.
-    private ArrayList<TextEntry> textEntries;
-    // Entradas de imagen.
-    private ArrayList<ImageEntry> imageEntries;
+    private ArrayList<Entry> entries;
     
     /**
      * Constructor - Construye e inicializa un muro vacio.
      */
     public Wall() {
-        textEntries = new ArrayList<>();
-        imageEntries = new ArrayList<>();
+        entries = new ArrayList<>();
     }
     
     /**
      * Anade una entrada al muro.
      * @param entry La entrada que se va a anadir al muro.
      */
-    public void addEntry (TextEntry entry) {
-        textEntries.add(entry);
-    }
-    
-    /**
-     * Anade una entrada al muro.
-     * @param entry La entrada que se va a anadir al muro.
-     */
-    public void addEntry (ImageEntry entry) {
-        imageEntries.add(entry);
+    public void addEntry (Entry entry) {
+        entries.add(entry);
     }
     
     /**
@@ -47,10 +36,7 @@ public class Wall {
     @Override
     public String toString() {
         String refund = "";
-        for (TextEntry entry : textEntries) {
-            refund += entry + "\n";
-        }
-        for (ImageEntry entry : imageEntries) {
+        for (Entry entry : entries) {
             refund += entry + "\n";
         }
         return refund;

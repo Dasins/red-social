@@ -13,7 +13,7 @@
  * @author d4s1ns
  * @version 2018/04/16
  */
-public class TextEntry extends Entry{    
+public class TextEntry extends EntryWithComments{    
     // Contenido de la entrada.
     private String content;
     
