@@ -40,6 +40,13 @@ public class TextEntry extends Entry{
     }
     
     /**
+     * Devuelve el autor y el texto del mensaje.
+     */
+    public void showAuthorAndContent() {
+        System.out.println("Autor: " + getAuthor() + "/n" + content);
+    }
+    
+    /**
      * Devuelve la informacion sobre la entrada como una cadena.
      * Los datos sobre la fecha de publicacion se devuelve como la diferencia en minutos y 
      * segundos entre le fecha actual y la de publicacion.
