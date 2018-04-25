@@ -42,4 +42,12 @@ public class EventEntry extends Entry {
         return "Autor: " + getAuthor() + "\nMe gusta: " + getLikes() + "\nPublicado hace: " 
                + getAntiquity() + "\n\n" + content; 
     }
+    
+    /**
+     * Muestra por pantalla.
+     */
+    @Override
+    public void mostrar () {
+        System.out.println(this);
+    }
 }

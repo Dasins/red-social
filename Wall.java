@@ -49,5 +49,15 @@ public class Wall {
     public void print() {
         System.out.println(this);
     }
+    
+    /**
+     * Muestra la informacion del muro por pantalla.
+     * @deprecated
+     */
+    public void print2() {
+        for (Entry entry : entries) {
+            entry.mostrar();
+        }
+    }
 }
 

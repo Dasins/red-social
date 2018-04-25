@@ -64,4 +64,10 @@ public class ImageEntry extends EntryWithComments{
                + imgURL + "\n\n" + "\n\n" + getComments(); 
     }
     
+    /**
+     * Muestra por pantalla.
+     */
+    public void mostrar () {
+        System.out.println(this);
+    }
 }

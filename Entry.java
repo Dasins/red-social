@@ -93,6 +93,10 @@ public class Entry {
         likes++;
     }
     
-    
+    /**
+     * Imprime por pantalla toda la informacion de la entrada. 
+     */
+    public void mostrar() {
+    }
        
 }

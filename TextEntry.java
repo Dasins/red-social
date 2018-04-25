@@ -57,4 +57,12 @@ public class TextEntry extends EntryWithComments{
         return "Autor: " + getAuthor() + "\nMe gusta: " + getLikes() + "\nPublicado hace: " 
                + getAntiquity() + "\n\n" + content + "\n\n" + getComments(); 
     }
+    
+    /**
+     * Muestra por pantalla la informacion de la entrada.
+     */
+    @Override
+    public void mostrar() {
+        System.out.println(this);
+    }
 }
