@@ -35,6 +35,19 @@ public abstract class EntryWithComments extends Entry {
     }
     
     /**
+     * Devuelve los comentarios de esta entrada como codigo HTML.
+     * @return Devuelve la informacion de esta entrada como codigo HTML.
+     */
+    public String commentsToHTML() {
+        String refund = "";
+        String[] parts = getComments().split("\r");
+        for (String part : parts) {
+            refund += "\t\t\t\t\t<tr>\r\t\t\t\t\t\t<td class='comments' colspan='3'>" + part + "</td>\r\t\t\t\t\t</tr>\r";
+        }
+        return refund;
+    }
+    
+    /**
      * Devuelve los comentarios de la entrada o un mensaje indicando que no 
      * hay comentarios.
      * @return Devuelve los comentarios de la entrada o un mensaje indicando 
@@ -43,7 +56,6 @@ public abstract class EntryWithComments extends Entry {
     public String getComments() {
         String refund = "";
         if (comments.size() > 0) {
-            refund = "Comentarios:";
             for (String comment : comments) {
                 refund += "\r#"+ comment; 
             }

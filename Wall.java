@@ -1,4 +1,10 @@
 import java.util.ArrayList;
+import java.nio.file.Files;
+import java.io.File;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.BufferedWriter;
 
 /**
  * Muro de nuestra red social.
@@ -11,6 +17,9 @@ import java.util.ArrayList;
  * @version 2018/05/03
  */
 public class Wall { 
+    // Ruta al documento html de la web.
+    private final static String PATH = "web/index.html";
+
     // Entradas de texto.
     private ArrayList<Entry> entries;
 
@@ -27,6 +36,33 @@ public class Wall {
      */
     public void addEntry (Entry entry) {
         entries.add(entry);
+    }
+    
+    /**
+     * Abre el muro en el navegador.
+     */
+    public void launch() {
+        createWeb();
+        try {
+            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + PATH);
+        }
+        catch (Exception e) {
+            
+        }
+    }   
+    
+    /**
+     * Anade una entrada al muro en la web.
+     */
+    private void createWeb() {
+        File file = new File(PATH);
+        BufferedWriter bw;
+        try {
+            bw = new BufferedWriter(new FileWriter(file));
+            bw.write(toHTML());
+            bw.close();
+        }
+        catch (IOException e) {}    
     }
 
     /**
@@ -74,6 +110,28 @@ public class Wall {
             }
         }
     }
-    
+
+    /**
+     * COnvierte el muro en un archivo html.
+     * @return Devuelve una entrada convertida en un articule html5 valido
+     *         insertable en un documento html.
+     */
+    private String toHTML() {
+        String total = "";
+        total += "<html>\r\t<head>\r\t\t<meta charset='UTF-8' />\r\t\t<meta charset='UTF-8'/>\r\t\t<title>STALK</title>";
+        total += "\r\t\t<link rel='icon' href='https://cdn3.iconfinder.com/data/icons/crime-and-criminal-part-3-of-3/366/crime-criminal-004-512.png'>";
+        total += "\r\t\t<link href='css/css.css' rel='stylesheet' type='text/css'>";
+        total += "\r\t\t<link href='https://fonts.googleapis.com/css?family=Alegreya|Gentium+Basic|Source+Sans+Pro' rel='stylesheet'>";
+        total += "\r\t</head>\r\t<body>\r\t\t<header>\r\t\t\t<h1>STALK</h1>";
+        total += "\r\t\t\t<p class='setoff'>Espía a tus amigos</p>\r\t\t</header>";
+        total += "\r\t\t<section id='wall'>";
+        for (Entry entry : entries) {
+            total += "\t\t\t<article class='" + entry.getClass().getSimpleName() + "'>\r";
+            total += "\t\t\t\t<table>\r" + entry.toHTML();
+        }
+        total += "\t\t\t\t</table>\r\t\t\t</article>\r";
+        total += "\r\t\t</section>\r\t</body>\r</html>";
+        return total;
+    }
 }
 

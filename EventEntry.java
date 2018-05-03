@@ -59,6 +59,17 @@ public class EventEntry extends Entry {
     }
     
     /**
+     * Devuelve la informacion de esta entrada como codigo HTML.
+     * @return Devuelve la informacion de esta entrada como codigo HTML.
+     */
+    @Override
+    public String toHTML() {
+        String refund = super.toHTML();
+        refund += "\t\t\t\t\t<tr>\r\t\t\t\t\t\t<td colspan='3'>" + content.replace("\n","<br/> ") + "</td>\r\t\t\t\t\t</tr>\r";
+        return refund;
+    }
+    
+    /**
      * Devuelve la informacion sobre la entrada como una cadena de texto.
      * Los datos sobre la fecha de publicacion se devuelven como la diferencia
      * en minutos o segundos entre le fecha actual y la de publicacion.

@@ -35,7 +35,6 @@ public class ImageEntry extends EntryWithComments{
         this.imgURL = imgURL;
     }
     
-    // INFORMACION DE LA ENTRADA
     /**
      * Devuelve el titulo de la imagen.
      * @return Devuelve el titulo de la imagen.
@@ -53,18 +52,6 @@ public class ImageEntry extends EntryWithComments{
     }
     
     /**
-     * Devuelve la informacion sobre la entrada como una cadena.
-     * Los datos sobre la fecha de publicacion se devuelve como la diferencia en minutos y 
-     * segundos entre le fecha actual y la de publicacion.
-     * @return Devuelve la informacion sobre la entrada como una cadena.
-     */
-    @Override
-    public String toString() {
-        return super.toString() + "\r" + imgTitle + "\r" + imgURL + "\r" 
-               + getComments();
-    }
-    
-    /**
      * Muestra por pantalla.
      */
     public void show() {
@@ -78,4 +65,28 @@ public class ImageEntry extends EntryWithComments{
         System.out.println(imgTitle + "\r" + imgURL);
     }
     
+    /**
+     * Devuelve la informacion de esta entrada como codigo HTML.
+     * @return Devuelve la informacion de esta entrada como codigo HTML.
+     */
+    @Override
+    public String toHTML() {
+        String refund = super.toHTML();
+        refund += "\t\t\t\t\t<tr>\r\t\t\t\t\t\t<td colspan='3'>" + imgTitle + "</td>\r\t\t\t\t\t</tr>\r";
+        refund += "\t\t\t\t\t<tr>\r\t\t\t\t\t\t<td colspan='3'><img src='" + imgURL + "'/></td>\r\t\t\t\t\t</tr>\r";
+        refund += commentsToHTML();
+        return refund;
+    }
+    
+    /**
+     * Devuelve la informacion sobre la entrada como una cadena.
+     * Los datos sobre la fecha de publicacion se devuelve como la diferencia en minutos y 
+     * segundos entre le fecha actual y la de publicacion.
+     * @return Devuelve la informacion sobre la entrada como una cadena.
+     */
+    @Override
+    public String toString() {
+        return super.toString() + "\r" + imgTitle + "\r" + imgURL + "\r" 
+               + getComments();
+    }
 }

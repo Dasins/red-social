@@ -102,6 +102,17 @@ public abstract class Entry {
     public abstract void showExclusiveInfo();
     
     /**
+     * Devuelve la informacion de esta entrada como codigo HTML.
+     * @return Devuelve la informacion de esta entrada como codigo HTML.
+     */
+    public String toHTML() {
+        String refund = "\t\t\t\t\t<tr>\r\t\t\t\t\t\t<th>Autor: " + author + "</th>\r";
+        refund += "\t\t\t\t\t\t<th>" + getAntiquity() + "</th>\r";
+        refund += "\t\t\t\t\t\t<th>Me gusta: " + likes + "</th>\r\t\t\t\t\t</tr>\r";
+        return refund;
+    }
+    
+    /**
      * Devuelve la informacion sobre la entrada como una cadena de texto.
      * Los datos sobre la fecha de publicacion se devuelven como la diferencia
      * en minutos o segundos entre le fecha actual y la de publicacion.
@@ -109,7 +120,7 @@ public abstract class Entry {
      */
     @Override
     public String toString() {
-        return "Autor: " + author + "\r" + getAntiquity() 
-               + "\rMe gusta: " + likes;
+        return "Autor: " + author + "\t" + getAntiquity() 
+               + "\tMe gusta: " + likes;
     }
 }
