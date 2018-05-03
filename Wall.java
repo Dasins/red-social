@@ -3,15 +3,14 @@ import java.util.ArrayList;
 /**
  * Muro de nuestra red social.
  * 
- * Pertenece al proyecto 'stalk', una red social un poco cutre.
+ * Pertenece al proyecto 'red-social'.
  * 
  * El muro es el lugar donde los usuarios publicaran sus entradas.
  *
  * @author d4s1ns
- * @version 2018/04/18
+ * @version 2018/05/03
  */
-public class Wall {
-    
+public class Wall { 
     // Entradas de texto.
     private ArrayList<Entry> entries;
 
@@ -38,7 +37,7 @@ public class Wall {
     public String toString() {
         String refund = "";
         for (Entry entry : entries) {
-            refund += entry + "\n==============================\n\n";
+            refund += entry + "\r==============================\r";
         }
         return refund;
     }
@@ -47,7 +46,7 @@ public class Wall {
      * Muestra la informacion del muro por pantalla.
      * @deprecated
      */
-    public void print() {
+    public void show() {
         System.out.println(this);
     }
 
@@ -55,28 +54,26 @@ public class Wall {
      * Muestra la informacion del muro por pantalla.
      * @deprecated
      */
-    public void print2() {
+    public void print() {
         for (Entry entry : entries) {
-            entry.mostrar();
+            entry.show();
         }
     }
 
     /**
-     * Imprime por pantalla la informacion unica de la entrada.
+     * Imprime por pantalla la informacion unica del tipo de entrada
+     * introducida por parametro. Con un valor 'null' imprime la informacion
+     * de todas las entradas.
+     * @param entryType Tipo de entrada buscada.
      */
     public void filter(String entryType) {
         for (Entry entry : entries) {
-            if (entry.getClass().getSimpleName().equals(entryType) || entryType == null ){;
+            String entryClass = entry.getClass().getSimpleName();
+            if (entryClass.equals(entryType) || entryType == null ){
                 entry.showExclusiveInfo();
             }
         }
     }
     
-    
-    public void create() {
-        for (Entry entry : entries) {
-            System.out.println(entry.toHTML());
-        }
-    }
 }
 

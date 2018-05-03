@@ -1,19 +1,30 @@
 
 /**
+ * Notificacion de un evento en nuestro muro.
  * 
+ * Pertenece al proyecto 'red-social'.
+ * 
+ * Un evento es una notificacion de un suceso ocurrido en nuestra red social.
+ * Por ejemplo, alguien se ha unido a un grupo.
  *
  * @author d4s1ns
- * @version 2018/04/20
+ * @version 2018/05/03
  */
 public class EventEntry extends Entry {
     // Contenido de la entrada
     private String content;
 
     /**
-     * Constructor for objects of class EventEntry
+     * Constructor - Construye entradas indicando su autor y el contenido.
+     * Las entradas se crean con un numero prestablecido de likes.
+     * La fecha de publicacion coincidira con en el momento en el se crea una 
+     * entrada y no sera modificable.
+     * @param author Autor de la entrada.
+     * @param content Contenido de la entrada.
      */
     public EventEntry(String author, String content) {
         super(author);
+        this.content = content;
     }
 
     /**
@@ -25,43 +36,37 @@ public class EventEntry extends Entry {
     }
     
     /**
-     * Devuelve el autor y el texto del mensaje.
+     * Muestra por pantalla la informacion de la entrada.
+     */
+    @Override
+    public void show() {
+        System.out.println(this);
+    }
+    
+    /**
+     * Devuelve el autor y el contenido de la entrada.
      */
     public void showAuthorAndContent() {
         System.out.println("Autor: " + getAuthor() + "/n" + content);
     }
     
     /**
-     * Devuelve la informacion sobre la entrada como una cadena.
-     * Los datos sobre la fecha de publicacion se devuelve como la diferencia en minutos y 
-     * segundos entre le fecha actual y la de publicacion.
+     * Imprime por pantalla la informacion especifica de la entrada.
+     */
+    @Override
+    public void showExclusiveInfo() {
+        System.out.println(content);
+    }
+    
+    /**
+     * Devuelve la informacion sobre la entrada como una cadena de texto.
+     * Los datos sobre la fecha de publicacion se devuelven como la diferencia
+     * en minutos o segundos entre le fecha actual y la de publicacion.
      * @return Devuelve la informacion sobre la entrada como una cadena.
      */
     @Override
     public String toString() {
-        return super.toString() + "/n/n" + content;
+        return super.toString() + "\r" + content;
     }
     
-    /**
-     * Muestra por pantalla.
-     */
-    @Override
-    public void mostrar () {
-        System.out.println(this);
-    }
-    
-    /**
-     * Devuelve la informacion única de la entrada.
-     */
-    @Override
-    public void showExclusiveInfo() {
-        System.out.println(content + "\r");
-    }
-    
-    /**
-     * 
-     */
-    public String toHTML() {
-        return super.toHTML() + "\t\t\t<tr>\r\t\t\t\t<td class='title'>" + content + "</td>\r\t\t\t</tr>\r";
-    }
 }

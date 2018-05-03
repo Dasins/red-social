@@ -4,14 +4,15 @@
  * 
  * Pertenece al proyecto 'stalk', una red social un poco cutre.
  * 
- * Una entrada de imagen representa un imagen y un contenido textual cuyo autor desea compartir 
- * en la red social.
- * Una entrada de imagen tiene un autor, un contenido y una imagen, la cantidad de 'me gusta' 
- * que tiene la entrada, una coleccion con los comentarios sobre la entrada y una fecha de 
- * publicacion que se establece al crear la entrada de imagen.
+ * Una entrada de imagen representa un imagen y un contenido textual cuyo 
+ * autor desea compartir en la red social.
+ * Una entrada de imagen tiene un autor, un contenido y una imagen, 
+ * la cantidad de 'me gusta' que tiene la entrada, una coleccion con los 
+ * comentarios sobre la entrada y una fecha de publicacion que se establece 
+ * al crear la entrada.
  * 
  * @author d4s1ns
- * @version 2018/04/16
+ * @version 2018/05/03
  */
 public class ImageEntry extends EntryWithComments{    
     // Titulo de la imagen.
@@ -59,13 +60,14 @@ public class ImageEntry extends EntryWithComments{
      */
     @Override
     public String toString() {
-        return super.toString() + "\n\n" + imgTitle + "\n\n" + imgURL;
+        return super.toString() + "\r" + imgTitle + "\r" + imgURL + "\r" 
+               + getComments();
     }
     
     /**
      * Muestra por pantalla.
      */
-    public void mostrar () {
+    public void show() {
         System.out.println(this);
     }
     
@@ -73,14 +75,7 @@ public class ImageEntry extends EntryWithComments{
      * Devuelve la informacion única de la entrada.
      */
     public void showExclusiveInfo() {
-        System.out.println(imgTitle + "\n" + imgURL + "\r");
+        System.out.println(imgTitle + "\r" + imgURL);
     }
     
-    /**
-     * Devuelve la informacion de la entrada como filas de una tabla html.
-     */
-    public String toHTML() {
-        String refund = super.toHTML() + "\t\t\t<tr>\r\t\t\t\t<td class='title'>" + imgTitle + "</td>\r\t\t\t</tr>\t\t\t<tr>\r\t\t\t\t<td class='url'><img src='" + imgTitle + "'/></td>\r\t\t\t</tr>\r" + commentsToHTML();
-        return refund;
-    }
 }

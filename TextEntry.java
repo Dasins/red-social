@@ -4,14 +4,15 @@
  * 
  * Pertenece al proyecto 'stalk', una red social un poco cutre.
  * 
- * Una entrada de texto representa un contenido textual cuyo autor desea compartir en la 
- * red social.
- * Una entrada de texto tiene un autor y un contenido, la cantidad de 'me gusta' que tiene 
- * la entrada, una coleccion con los comentarios sobre la entrada y una fecha de 
- * publicacion que se establece al crear la entrada de texto.
+ * Una entrada de texto representa un contenido textual cuyo autor desea 
+ * compartir en la red social.
+ * Una entrada de texto tiene un autor y un contenido, la cantidad de 
+ * 'me gusta' que tiene la entrada, una coleccion con los comentarios sobre 
+ * la entrada y una fecha de publicacion que se establece al crear 
+ * la entrada.
  * 
  * @author d4s1ns
- * @version 2018/04/16
+ * @version 2018/05/03
  */
 public class TextEntry extends EntryWithComments{    
     // Contenido de la entrada.
@@ -30,7 +31,6 @@ public class TextEntry extends EntryWithComments{
         this.content = content;
     }
     
-    // INFORMACION DE LA ENTRADA
     /**
      * Devuelve el contenido de la entrada.
      * @return Devuelve el contenido de la entrada.
@@ -43,25 +43,14 @@ public class TextEntry extends EntryWithComments{
      * Devuelve el autor y el texto del mensaje.
      */
     public void showAuthorAndContent() {
-        System.out.println("Autor: " + getAuthor() + "/n" + content);
-    }
-    
-    /**
-     * Devuelve la informacion sobre la entrada como una cadena.
-     * Los datos sobre la fecha de publicacion se devuelve como la diferencia en minutos y 
-     * segundos entre le fecha actual y la de publicacion.
-     * @return Devuelve la informacion sobre la entrada como una cadena.
-     */
-    @Override
-    public String toString() {
-        return super.toString() + "\r" + content; 
+        System.out.println("Autor: " + getAuthor() + "/r" + content);
     }
     
     /**
      * Muestra por pantalla la informacion de la entrada.
      */
     @Override
-    public void mostrar() {
+    public void show() {
         System.out.println(this);
     }
     
@@ -70,14 +59,18 @@ public class TextEntry extends EntryWithComments{
      */
     @Override
     public void showExclusiveInfo() {
-        System.out.println(content + "\n");
+        System.out.println(content);
     }
     
     /**
-     * Devuelve la informacion de la entrada como filas de una tabla html.
+     * Devuelve la informacion sobre la entrada como una cadena de texto.
+     * Los datos sobre la fecha de publicacion se devuelven como la diferencia
+     * en minutos o segundos entre le fecha actual y la de publicacion.
+     * @return Devuelve la informacion sobre la entrada como una cadena.
      */
-    public String toHTML() {
-        String refund = super.toHTML() + "\t\t\t<tr>\r\t\t\t\t<td class='title'>" + content + "</td>\r\t\t\t</tr>\r" + commentsToHTML();
-        return refund;
+    @Override
+    public String toString() {
+        return super.toString() + "\r" + content + "\r" + getComments(); 
     }
+    
 }

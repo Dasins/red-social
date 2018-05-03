@@ -3,12 +3,12 @@ import java.util.ArrayList;
 /**
  * Una entrada con comentarios.
  * 
- * Pertenece al proyecto 'stalk, una red social un poco cutre.
+ * Pertenece al proyecto 'red-social'.
  * 
- * Las entradas con comentarios, tienen comentarios yeah!.
+ * Una entrada es una publicacion en el muro. Las entradas con comentarios, tienen comentarios.
  *
  * @author d4s1ns
- * @version 2018/04/2018
+ * @version 2018/05/03
  */
 public abstract class EntryWithComments extends Entry {
     // Coleccion con los comentarios de la entrada.
@@ -18,7 +18,7 @@ public abstract class EntryWithComments extends Entry {
      * Constructor - Construye entradas a partir de un autor.
      * Las entradas se crean con un numero prestablecido de likes y sin comentarios.
      * La fecha de publicacion coincidira con en el momento en el se crea una entrada 
-     * y no sera modificable.
+     * y no sera modificable. Por defecto, se crean sin ningun comentario.
      * @param author Autor de la entrada.
      */
     public EntryWithComments(String author) {
@@ -35,27 +35,17 @@ public abstract class EntryWithComments extends Entry {
     }
     
     /**
-     * Devuelve la informacion sobre la entrada como una cadena.
-     * Los datos sobre la fecha de publicacion se devuelve como la diferencia en minutos y 
-     * segundos entre le fecha actual y la de publicacion.
-     * @return Devuelve la informacion sobre la entrada como una cadena.
-     */
-    @Override
-    public String toString() {
-        return super.toString() + getComments(); 
-    }
-    
-    /**
-     * Devuelve los comentarios de la entrada o un mensaje indicando que no hay comentarios.
-     * @return Devuelve los comentarios de la entrada o un mensaje indicando que no hay 
-     *         comentarios.
+     * Devuelve los comentarios de la entrada o un mensaje indicando que no 
+     * hay comentarios.
+     * @return Devuelve los comentarios de la entrada o un mensaje indicando 
+     *         que no hay comentarios.
      */
     public String getComments() {
         String refund = "";
         if (comments.size() > 0) {
-            refund = "Comentarios:\n";
+            refund = "Comentarios:";
             for (String comment : comments) {
-                refund += comment + "\r"; 
+                refund += "\r#"+ comment; 
             }
         }
         else {
@@ -64,22 +54,4 @@ public abstract class EntryWithComments extends Entry {
         return refund;
     }
     
-    /**
-     * Devuelve la informacion única de la entrada.
-     */
-    @Override
-    public void showExclusiveInfo() {
-        System.out.println(getComments() + "\r");
-    }
-    
-    /**
-     * 
-     */
-    public String commentsToHTML() {
-        String refund = "";
-        for (String comment : comments) {
-            refund = "\t\t\t<tr><td class='comments'>" + comment + "</td></tr>\r";
-        }
-        return refund;
-    }
 }
