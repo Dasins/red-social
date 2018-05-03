@@ -47,7 +47,7 @@ public class ImageEntry extends EntryWithComments{
      * Devuelve  URL de la imagen.
      * @return Devuelve el URL de la imagen.
      */
-    public String getImgURL() {
+    public String getImgURL() { 
         return imgURL;
     }
     
@@ -59,9 +59,7 @@ public class ImageEntry extends EntryWithComments{
      */
     @Override
     public String toString() {
-        return "Autor: " + getAuthor() + "\nMe gusta: " + getLikes() + "\nPublicado hace: " 
-               + getAntiquity() + "\n\n" + "Titulo Imagen: " + imgTitle + "\nURL imagen: " 
-               + imgURL + "\n\n" + "\n\n" + getComments(); 
+        return super.toString() + "\n\n" + imgTitle + "\n\n" + imgURL;
     }
     
     /**
@@ -69,5 +67,20 @@ public class ImageEntry extends EntryWithComments{
      */
     public void mostrar () {
         System.out.println(this);
+    }
+    
+    /**
+     * Devuelve la informacion única de la entrada.
+     */
+    public void showExclusiveInfo() {
+        System.out.println(imgTitle + "\n" + imgURL + "\r");
+    }
+    
+    /**
+     * Devuelve la informacion de la entrada como filas de una tabla html.
+     */
+    public String toHTML() {
+        String refund = super.toHTML() + "\t\t\t<tr>\r\t\t\t\t<td class='title'>" + imgTitle + "</td>\r\t\t\t</tr>\t\t\t<tr>\r\t\t\t\t<td class='url'><img src='" + imgTitle + "'/></td>\r\t\t\t</tr>\r" + commentsToHTML();
+        return refund;
     }
 }

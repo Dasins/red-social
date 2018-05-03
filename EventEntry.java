@@ -39,8 +39,7 @@ public class EventEntry extends Entry {
      */
     @Override
     public String toString() {
-        return "Autor: " + getAuthor() + "\nMe gusta: " + getLikes() + "\nPublicado hace: " 
-               + getAntiquity() + "\n\n" + content; 
+        return super.toString() + "/n/n" + content;
     }
     
     /**
@@ -49,5 +48,20 @@ public class EventEntry extends Entry {
     @Override
     public void mostrar () {
         System.out.println(this);
+    }
+    
+    /**
+     * Devuelve la informacion única de la entrada.
+     */
+    @Override
+    public void showExclusiveInfo() {
+        System.out.println(content + "\r");
+    }
+    
+    /**
+     * 
+     */
+    public String toHTML() {
+        return super.toHTML() + "\t\t\t<tr>\r\t\t\t\t<td class='title'>" + content + "</td>\r\t\t\t</tr>\r";
     }
 }

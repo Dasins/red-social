@@ -54,8 +54,7 @@ public class TextEntry extends EntryWithComments{
      */
     @Override
     public String toString() {
-        return "Autor: " + getAuthor() + "\nMe gusta: " + getLikes() + "\nPublicado hace: " 
-               + getAntiquity() + "\n\n" + content + "\n\n" + getComments(); 
+        return super.toString() + "\r" + content; 
     }
     
     /**
@@ -64,5 +63,21 @@ public class TextEntry extends EntryWithComments{
     @Override
     public void mostrar() {
         System.out.println(this);
+    }
+    
+    /**
+     * Devuelve la informacion única de la entrada.
+     */
+    @Override
+    public void showExclusiveInfo() {
+        System.out.println(content + "\n");
+    }
+    
+    /**
+     * Devuelve la informacion de la entrada como filas de una tabla html.
+     */
+    public String toHTML() {
+        String refund = super.toHTML() + "\t\t\t<tr>\r\t\t\t\t<td class='title'>" + content + "</td>\r\t\t\t</tr>\r" + commentsToHTML();
+        return refund;
     }
 }

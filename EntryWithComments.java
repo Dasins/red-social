@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @author d4s1ns
  * @version 2018/04/2018
  */
-public class EntryWithComments extends Entry {
+public abstract class EntryWithComments extends Entry {
     // Coleccion con los comentarios de la entrada.
     private ArrayList<String> comments;
 
@@ -35,6 +35,17 @@ public class EntryWithComments extends Entry {
     }
     
     /**
+     * Devuelve la informacion sobre la entrada como una cadena.
+     * Los datos sobre la fecha de publicacion se devuelve como la diferencia en minutos y 
+     * segundos entre le fecha actual y la de publicacion.
+     * @return Devuelve la informacion sobre la entrada como una cadena.
+     */
+    @Override
+    public String toString() {
+        return super.toString() + getComments(); 
+    }
+    
+    /**
      * Devuelve los comentarios de la entrada o un mensaje indicando que no hay comentarios.
      * @return Devuelve los comentarios de la entrada o un mensaje indicando que no hay 
      *         comentarios.
@@ -44,7 +55,7 @@ public class EntryWithComments extends Entry {
         if (comments.size() > 0) {
             refund = "Comentarios:\n";
             for (String comment : comments) {
-                refund += comment + "\n\n"; 
+                refund += comment + "\r"; 
             }
         }
         else {
@@ -53,4 +64,22 @@ public class EntryWithComments extends Entry {
         return refund;
     }
     
+    /**
+     * Devuelve la informacion única de la entrada.
+     */
+    @Override
+    public void showExclusiveInfo() {
+        System.out.println(getComments() + "\r");
+    }
+    
+    /**
+     * 
+     */
+    public String commentsToHTML() {
+        String refund = "";
+        for (String comment : comments) {
+            refund = "\t\t\t<tr><td class='comments'>" + comment + "</td></tr>\r";
+        }
+        return refund;
+    }
 }

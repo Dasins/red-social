@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author d4s1ns
  * @version 2018/84/18
  */
-public class Entry {
+public abstract class Entry {
     // Numero de 'me gusta' iniciales.
     private final static int INITIAL_LIKES = 0;
     
@@ -48,7 +48,7 @@ public class Entry {
         // Calcula la diferencia en segundos entre la fecha actual y la de publicacion.
         Duration duration = Duration.between(publicationDate, now);
         String timeLapse =  (Math.abs(duration.getSeconds()) > 59) ? Math.abs(duration.toMinutes()) + " minutos ":
-                                                                     Math.abs(duration.getSeconds()) + "segundos";
+                                                                     Math.abs(duration.getSeconds()) + " segundos ";
     
         return timeLapse;
     }
@@ -85,6 +85,18 @@ public class Entry {
         System.out.println(this);
     }
     
+    /**
+     * Devuelve la informacion sobre la entrada como una cadena.
+     * Los datos sobre la fecha de publicacion se devuelve como la diferencia en minutos y 
+     * segundos entre le fecha actual y la de publicacion.
+     * @return Devuelve la informacion sobre la entrada como una cadena.
+     */
+    @Override
+    public String toString() {
+        return "Autor: " + getAuthor() + "\nMe gusta: " + getLikes() + "\nPublicado hace: " 
+               + getAntiquity() + "\r"; 
+    }
+    
     // OPERACIONES CON LA ENTRADA
     /**
      * Anade un 'me gusta' a la entrada.
@@ -94,9 +106,22 @@ public class Entry {
     }
     
     /**
-     * Imprime por pantalla toda la informacion de la entrada. 
+     * Imprime por pantalla la informacion de la entrada.
      */
-    public void mostrar() {
-    }
+    public abstract void mostrar();
        
+    /**
+     * Devuelve la informacion única de la entrada.
+     */
+    public abstract void showExclusiveInfo();
+    
+    /**
+     * Devuelve la informacion de la entrada como filas de una tabla html.
+     */
+    public String toHTML() {
+        String refund = "\t\t\t<tr>\r\t\t\t\t<td class='author'>Autor:" + author + "</td>\r\t\t\t</tr>\r";
+        refund += "\t\t\t<tr>\r\t\t\t\t<td class='likes'>Likes " + likes + "</td>\r\t\t\t</tr>\r";
+        refund += "\t\t\t<tr>\r\t\t\t\t<td class='date'>Publicado hace" + getAntiquity() + "</td>\r\t\t\t</tr>\r";
+        return refund;
+    }
 }
